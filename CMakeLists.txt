@@ -6,8 +6,8 @@ option(RABIT_BUILD_TESTS "Build rabit tests" OFF)
 option(RABIT_BUILD_MPI "Build MPI" OFF)
 option(RABIT_BUILD_DMLC "Include DMLC_CORE in build" ON)
 
-add_library(rabit src/allreduce_base.cc src/allreduce_robust.cc src/engine.cc src/c_api.cc)
-add_library(rabit_base src/allreduce_base.cc src/engine_base.cc src/c_api.cc)
+add_library(rabit src/allreduce_base.cc src/allreduce_robust.cc src/engine.cc src/c_api.cc src/ssl_socket.cc src/ssl_context_manager.cc)
+add_library(rabit_base src/allreduce_base.cc src/engine_base.cc src/c_api.cc src/ssl_socket.cc src/ssl_context_manager.cc)
 add_library(rabit_empty src/engine_empty.cc src/c_api.cc)
 
 set(rabit_libs rabit rabit_base rabit_empty)
