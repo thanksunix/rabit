@@ -50,11 +50,11 @@ void SSLContextManager::LoadCertAndKey(const std::string& certificate,
     Socket::Error("Check private key failed");
   }
   // Specify CAfile, set CApath as nullptr.
-  // if (SSL_CTX_load_verify_locations(client_ssl_ctx_.get(),
-  //                                   trusted_ca_file_.c_str(),
-  //                                   nullptr) != kSuccess) {
-  //   Socket::Error("Cannot load root certificate for client.");
-  // }
+  if (SSL_CTX_load_verify_locations(client_ssl_ctx_.get(),
+                                    trusted_ca_file.c_str(),
+                                    nullptr) != kSuccess) {
+    Socket::Error("Cannot load root certificate for client.");
+  }
   LOG(INFO) << "SSL_CTX initialized.";
 }
 

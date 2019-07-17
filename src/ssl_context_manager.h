@@ -51,8 +51,6 @@ class SSLContextManager {
   X509 *cert_ = nullptr;
   // matched private key
   EVP_PKEY *private_key_ = nullptr;
-  // Trusted CA file. (PEM)
-  std::string trusted_ca_file_;
 };
 
 }  // namespace utils
