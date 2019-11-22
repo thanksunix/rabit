@@ -284,12 +284,14 @@ class TCPSocket : public Socket{
     }
   }
   inline void SetLinger(int timeout = 0) {
+#if !defined(__ASYLO__)
     struct linger sl;
     sl.l_onoff = 1;    /* non-zero value enables linger option in kernel */
     sl.l_linger = timeout;    /* timeout interval in seconds */
     if (setsockopt(sockfd, SOL_SOCKET, SO_LINGER, reinterpret_cast<char*>(&sl), sizeof(sl)) == -1) {
       Socket::Error("SO_LINGER");
     }
+#endif
   }
   /*!
    * \brief create the socket, call this before using socket
@@ -325,6 +327,9 @@ class TCPSocket : public Socket{
     unsigned long atmark;  // NOLINT(*)
     if (ioctlsocket(sockfd, SIOCATMARK, &atmark) != NO_ERROR) return -1;
 #else
+#if defined(__ASYLO__)
+#define SIOCATMARK 0x8905
+#endif
     int atmark;
     if (ioctl(sockfd, SIOCATMARK, &atmark) == -1) return -1;
 #endif  // _WIN32

@@ -16,7 +16,7 @@
 #include <cstdarg>
 #endif  // RABIT_STRICT_CXX98_
 
-#if !defined(__GNUC__) || defined(__FreeBSD__)
+#if !defined(__GNUC__) || defined(__FreeBSD__) || defined(__ASYLO__)
 #define fopen64 std::fopen
 #endif  // !defined(__GNUC__) || defined(__FreeBSD__)
 
